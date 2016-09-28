@@ -1,0 +1,1 @@
+json.array! @user_mentions, partial: 'user_mentions/user_mention', as: :user_mention

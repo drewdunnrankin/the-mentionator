@@ -1,0 +1,13 @@
+<h1>Mentions</h1>
+
+<table>
+<% @sorted_mc.each do |mc, count| %>
+	<tr>
+		<td><%= mc %></td>
+		<td><%= count %></td>
+	</tr>
+	<% end %>
+	</table>
+	<br>
+
+<p><%= @count %></p>

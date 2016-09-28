@@ -1,0 +1,1 @@
+json.partial! "user_mentions/user_mention", user_mention: @user_mention
