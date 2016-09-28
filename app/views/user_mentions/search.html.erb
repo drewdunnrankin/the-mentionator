@@ -1,9 +1,11 @@
+<div class="col-md-8">
 <h1>Mentions</h1>
 
 <p><%= @error %></p>
 
 <%= form_tag("/search", method: "get") do %>
   <%= label_tag(:q, "Search again?") %>
+  <br>
   <%= text_field_tag(:q) %>
   <%= submit_tag("Search") %>
 <br> <br>
@@ -26,3 +28,4 @@
 	<br>
 <% end %>
 <% end %>
+</div>

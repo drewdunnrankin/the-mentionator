@@ -1,9 +1,12 @@
+<div class="col-md-8">
 <p id="notice"><%= notice %></p>
 
-<h1>Search</h1>
+<h1>The Mentionator</h1>
+<h6>Having <a href="https://www.youtube.com/watch?v=J-f2L2_UkfY&feature=youtu.be&t=19s">nightmares about your Twitter mentions?</a></h6>
 <%= form_tag("/search", method: "get") do %>
   <%= label_tag(:q, "Enter username:") %>
   <%= text_field_tag(:q) %>
   <%= submit_tag("Search") %>
 <% end %>
+</div>
 
