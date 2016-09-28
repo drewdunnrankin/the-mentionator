@@ -28,7 +28,7 @@ class UserMentionsController < ApplicationController
     (1..5).each do |i|
       begin
         @tweets = $client.user_timeline(@username, options={:count => 200, :page => i})
-      rescue Twitter::Error::NotFound => error
+      rescue Twitter::Error::NotFound
         @error = "User not found."
       else 
         @tweets.each do |tweet|
@@ -41,9 +41,13 @@ class UserMentionsController < ApplicationController
         end
       end
     end
-    @mentions_count = Hash.new(0)
-    @mentions.each { |mention| @mentions_count[mention] += 1 }
-    @sorted_mc = Hash[@mentions_count.sort_by{ |_, v| -v }]
+    if @mentions.length != 0
+      @mentions_count = Hash.new(0)
+      @mentions.each { |mention| @mentions_count[mention] += 1 }
+      @sorted_mc = Hash[@mentions_count.sort_by{ |_, v| -v }]
+    else
+      @error = "No mentions found."
+    end
   end
 
   # POST /user_mentions
