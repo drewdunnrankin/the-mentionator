@@ -34,7 +34,7 @@ class UserMentionsController < ApplicationController
         @tweets.each do |tweet|
           @count += 1
           tweet.user_mentions.each do |mention|
-            if mention.attrs[:screen_name] != @username
+            if mention.attrs[:screen_name].downcase != @username.downcase
               @mentions.push('@' + mention.attrs[:screen_name])
             end
           end
