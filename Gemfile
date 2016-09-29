@@ -20,6 +20,7 @@ gem 'coffee-rails', '~> 4.2'
 
 # use MongoDB
 gem 'mongoid', '~> 6.0.0'
+gem 'mongo'
 
 # for using Twitter API
 gem 'twitter'

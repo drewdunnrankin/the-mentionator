@@ -30,6 +30,15 @@ class UserMentionsController < ApplicationController
         @tweets = $client.user_timeline(@username, options={:count => 200, :page => i})
       rescue Twitter::Error::NotFound
         @error = "User not found."
+      rescue Twitter::Error::TooManyRequests
+        @error = "You've made too many requests, but we have a cached version of your results."
+        begin
+          @cached_um = UserMention.find_by(username: @username)
+        rescue Mongoid::Errors::DocumentNotFound
+          @error = "You've made too many requests. Unfortunately, we have no cached data for the username entered."
+        else 
+          @sorted_mc = @cached_um.mentions
+        end
       else 
         @tweets.each do |tweet|
           @count += 1
@@ -49,6 +58,15 @@ class UserMentionsController < ApplicationController
       if !@error 
         @error = "No mentions found."
       end
+    end
+    begin
+      @params = { :username => @username, :mentions => @sorted_mc }
+      @um = UserMention.new(@params)
+      @um.save
+    rescue Mongo::Error::OperationFailure => e
+      @cached_um = UserMention.find_by(username: @username)
+      @cached_um.mentions = @sorted_mc
+      @cached_um.save
     end
   end
 
