@@ -46,7 +46,9 @@ class UserMentionsController < ApplicationController
       @mentions.each { |mention| @mentions_count[mention] += 1 }
       @sorted_mc = Hash[@mentions_count.sort_by{ |_, v| -v }]
     else
-      @error = "No mentions found."
+      if !@error 
+        @error = "No mentions found."
+      end
     end
   end
 
