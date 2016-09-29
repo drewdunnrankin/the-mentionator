@@ -145,5 +145,5 @@ test:
 production:
     clients:
         default:
-            uri: ENV["MONGODB_URI"]
+            uri: mongodb://heroku_n1bqhkfr:b9dtsi781rdu4d007ditdm5hp7@ds041934.mlab.com:41934/heroku_n1bqhkfr
 
