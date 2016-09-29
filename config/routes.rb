@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root 'user_mentions#index'
-  resources :user_mentions
   get '/search', to: "user_mentions#search"
 
 
